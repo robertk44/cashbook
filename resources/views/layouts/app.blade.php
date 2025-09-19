@@ -33,9 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                                href="{{ route('home') }}">
-                                Startseite
+                            <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
+                                href="{{ route('register') }}">
+                                Registrierung
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
+                                href="{{ route('login') }}">
+                                Login
                             </a>
                         </li>
                     </ul>
