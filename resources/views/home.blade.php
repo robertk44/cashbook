@@ -6,7 +6,7 @@
 <div class="row mt-5">
     @foreach ($cashboxes as $cashbox)
         <div class="col col-12 col-lg-6">
-            <div class="card mb-3">
+            <div class="card shadow-sm mb-3">
                 <div class="card-header">
                     <h5 class="card-title">{{ $cashbox->name }}</h5>
                 </div>
