@@ -20,7 +20,7 @@
 
 <body>
     <header class="">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     📖 Kassenbuch
@@ -55,7 +55,7 @@
                                         <i class="bi bi-person"></i>
                                     </span>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
                                     <li class="nav-item">
                                         <span class="dropdown-item-text">{{ Auth::user()->email }}</span>
                                     </li>
