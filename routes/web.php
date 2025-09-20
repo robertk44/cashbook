@@ -8,3 +8,4 @@ Route::get('/login', [HomeController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [HomeController::class, 'login']);
 Route::get('/register', [HomeController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [HomeController::class, 'register']);
+Route::post('/logout', [HomeController::class, 'logout'])->name('logout');

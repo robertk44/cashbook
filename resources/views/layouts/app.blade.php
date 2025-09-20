@@ -32,18 +32,45 @@
 
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
-                                href="{{ route('register') }}">
-                                Registrierung
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
-                                href="{{ route('login') }}">
-                                Login
-                            </a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
+                                    href="{{ route('register') }}">
+                                    Registrierung
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
+                                    href="{{ route('login') }}">
+                                    Login
+                                </a>
+                            </li>
+                        @endguest
+                        @auth
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+                                        style="width: 30px; height: 30px;">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li class="nav-item">
+                                        {{ Auth::user()->email }}
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                    </li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
             </div>
