@@ -50,15 +50,16 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+                                    <span class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center pb-1"
                                         style="width: 30px; height: 30px;">
                                         <i class="bi bi-person"></i>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                     <li class="nav-item">
-                                        {{ Auth::user()->email }}
+                                        <span class="dropdown-item-text">{{ Auth::user()->email }}</span>
                                     </li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <a class="dropdown-item" href="#">Profile</a>
                                     </li>
