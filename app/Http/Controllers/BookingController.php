@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\CashBox;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -18,17 +19,33 @@ class BookingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(CashBox $cashbox)
     {
-        //
+        return view('bookings.create', ['cashbox' => $cashbox]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CashBox $cashbox, Request $request)
     {
-        //
+        $request->validate([
+            'description' => 'required|string|max:1000',
+            'amount' => 'required|numeric',
+            'booking_date' => 'required|date',
+        ]);
+
+        Booking::create([
+            'description' => $request->description,
+            'amount' => $request->amount,
+            'booking_date' => $request->booking_date,
+            'cash_box_id' => $cashbox->id,
+        ]);
+
+        $cashbox->balance += $request->amount;
+        $cashbox->save();
+
+        return redirect()->route('home');
     }
 
     /**

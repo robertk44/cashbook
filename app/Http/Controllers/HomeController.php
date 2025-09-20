@@ -11,8 +11,12 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $cashboxes = CashBox::orderBy('name')->get();
-        return view('home');
+        $cashboxes = CashBox::with(['bookings' => function ($query) {
+            $query->orderBy('booking_date', 'desc')->oldest()->take(5);
+        }])->orderBy('name')->get();
+        return view('home', [
+            'cashboxes' => $cashboxes,
+        ]);
     }
 
     public function showRegistrationForm()

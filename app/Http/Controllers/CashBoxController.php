@@ -20,7 +20,7 @@ class CashBoxController extends Controller
      */
     public function create()
     {
-        //
+        return view('cashboxes.create');
     }
 
     /**
@@ -28,7 +28,19 @@ class CashBoxController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'description' => 'nullable|string|max:1000',
+            'balance' => 'required|numeric',
+        ]);
+
+        CashBox::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'balance' => $request->balance,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
