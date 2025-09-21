@@ -31,13 +31,18 @@ class BookingController extends Controller
     {
         $request->validate([
             'description' => 'required|string|max:1000',
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0.01',
             'booking_date' => 'required|date',
         ]);
 
+        $amount = $request->amount;
+        if ($request->amount_type === 'outgoing') {
+            $amount = -$request->amount;
+        }
+
         Booking::create([
             'description' => $request->description,
-            'amount' => $request->amount,
+            'amount' => $amount,
             'booking_date' => $request->booking_date,
             'cash_box_id' => $cashbox->id,
         ]);
