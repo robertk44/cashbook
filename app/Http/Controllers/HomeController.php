@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function home()
     {
         $cashboxes = CashBox::with(['bookings' => function ($query) {
-            $query->orderBy('booking_date', 'desc')->oldest()->take(5);
+            $query->orderBy('booking_date', 'desc')->orderBy('id', 'desc')->take(10);
         }])->orderBy('name')->get();
         return view('home', [
             'cashboxes' => $cashboxes,

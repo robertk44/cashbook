@@ -15,8 +15,9 @@
                         <p class="card-text">{{ $cashbox->description }}</p>
                         <hr>
                     @endif
-                    @foreach ($cashbox->bookings->sortBy('booking_date') as $booking)
-                        <div class="d-flex">
+                    @php $isEven = true; @endphp
+                    @foreach ($cashbox->bookings->sortBy([['booking_date', 'asc'], ['id', 'asc']]) as $booking)
+                        <div class="d-flex {{ $isEven ? 'bg-light' : 'bg-white' }}">
                             <div class="cb-flex-0-auto cb-w-90">
                                 <strong>{{ $booking->booking_date->format('d.m.Y') }}</strong>
                             </div>
@@ -27,6 +28,7 @@
                                 @include('partials.numberCurrency', ['amount' => $booking->amount])
                             </div>
                         </div>
+                        @php $isEven = !$isEven; @endphp
                     @endforeach
                     @auth
                         <hr>
