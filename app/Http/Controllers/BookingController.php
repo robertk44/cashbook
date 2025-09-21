@@ -47,7 +47,7 @@ class BookingController extends Controller
             'cash_box_id' => $cashbox->id,
         ]);
 
-        $cashbox->balance += $request->amount;
+        $cashbox->balance += $amount;
         $cashbox->save();
 
         return redirect()->route('home');
