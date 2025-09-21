@@ -11,8 +11,10 @@
                     <h5 class="card-title">{{ $cashbox->name }}</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ $cashbox->description }}</p>
-                    <hr>
+                    @if ($cashbox->description)
+                        <p class="card-text">{{ $cashbox->description }}</p>
+                        <hr>
+                    @endif
                     @foreach ($cashbox->bookings->sortBy('booking_date') as $booking)
                         <div class="d-flex justify-content-between">
                             <div>
@@ -26,11 +28,17 @@
                             </div>
                         </div>
                     @endforeach
-                    <hr>
-                    <p class="card-text text-end"><strong>Kontostand:</strong> {{ number_format($cashbox->balance, 2) }} €</p>
+                    @auth
+                        <hr>
+                        <p class="card-text text-end"><strong>Kontostand:</strong> {{ number_format($cashbox->balance, 2) }} €</p>
+                    @endauth
                 </div>
                 <div class="card-footer text-end">
-                    <a href="{{ route('cashboxes.bookings.create', ['cashbox' => $cashbox]) }}" class="btn btn-outline-primary"><i class="bi bi-plus-slash-minus pe-3"></i>Neue Buchung</a>
+                    @auth
+                        <a href="{{ route('cashboxes.bookings.create', ['cashbox' => $cashbox]) }}" class="btn btn-outline-primary"><i class="bi bi-plus-slash-minus pe-3"></i>Neue Buchung</a>
+                    @else
+                        <p class="card-text text-end fs-5"><strong>Kontostand:</strong> {{ number_format($cashbox->balance, 2) }} €</p>
+                    @endauth
                 </div>
             </div>
         </div>
