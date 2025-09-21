@@ -1,9 +1,9 @@
 # geplante Features
 
-- [ ] Radio Button Einnahme / Ausgabe
-- [ ] farblich Einnahme / Ausgabe rot / grün kennzeichnen
-- [ ] Kommentar pro Buchung linksbündig
-- [ ] Zahlenformat deutsch
+- [x] Radio Button Einnahme / Ausgabe
+- [x] farblich Einnahme / Ausgabe rot / grün kennzeichnen
+- [x] Kommentar pro Buchung linksbündig
+- [x] Zahlenformat deutsch
 - [ ] Bild bei Buchung anhängen, beim Abspeichern komprimieren
 - [ ] Buchung löschen
 - [ ] Kasse löschen
