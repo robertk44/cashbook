@@ -24,20 +24,20 @@
                                 {{ $booking->description }}
                             </div>
                             <div>
-                                {{ number_format($booking->amount, 2) }} €
+                                {{ number_format($booking->amount, 2, ',', '.') }} €
                             </div>
                         </div>
                     @endforeach
                     @auth
                         <hr>
-                        <p class="card-text text-end"><strong>Kontostand:</strong> {{ number_format($cashbox->balance, 2) }} €</p>
+                        <p class="card-text text-end"><strong>Kontostand:</strong> {{ number_format($cashbox->balance, 2, ',', '.') }} €</p>
                     @endauth
                 </div>
                 <div class="card-footer text-end">
                     @auth
                         <a href="{{ route('cashboxes.bookings.create', ['cashbox' => $cashbox]) }}" class="btn btn-outline-primary"><i class="bi bi-plus-slash-minus pe-3"></i>Neue Buchung</a>
                     @else
-                        <p class="card-text text-end fs-5"><strong>Kontostand:</strong> {{ number_format($cashbox->balance, 2) }} €</p>
+                        <p class="card-text text-end fs-5"><strong>Kontostand:</strong> {{ number_format($cashbox->balance, 2, ',', '.') }} €</p>
                     @endauth
                 </div>
             </div>
