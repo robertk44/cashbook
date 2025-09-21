@@ -16,14 +16,14 @@
                         <hr>
                     @endif
                     @foreach ($cashbox->bookings->sortBy('booking_date') as $booking)
-                        <div class="d-flex justify-content-between">
-                            <div>
+                        <div class="d-flex">
+                            <div class="cb-flex-0-auto cb-w-90">
                                 <strong>{{ $booking->booking_date->format('d.m.Y') }}</strong>
                             </div>
-                            <div>
+                            <div class="flex-grow-1 px-3">
                                 {{ $booking->description }}
                             </div>
-                            <div class="fw-bold">
+                            <div class="fw-bold text-end cb-flex-0-auto cb-w-90">
                                 @include('partials.numberCurrency', ['amount' => $booking->amount])
                             </div>
                         </div>
