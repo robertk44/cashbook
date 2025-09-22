@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CashBoxController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +16,5 @@ Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('cashboxes', CashBoxController::class);
     Route::resource('cashboxes.bookings', BookingController::class)->shallow();
+    Route::resource('categories', CategoryController::class)->except(['show', 'edit', 'update']);
 });

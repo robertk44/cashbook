@@ -61,7 +61,10 @@
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item link-secondary" href="#">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('categories.index') }}">Kategorien</a>
                                     </li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
