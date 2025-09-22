@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Neue Kasse')
+@section('title', $cashbox->name)
 
 @section('content')
 <div class="row mt-5">
@@ -8,7 +8,7 @@
         <h1>{{ $cashbox->name }}</h1>
         <p>{{ $cashbox->description }}</p>
         <p><strong>Guthaben:</strong> {{ number_format($cashbox->balance, 2) }} €</p>
-        <a href="{{ route('cashboxes.bookings.create', ['cashbox' => $cashbox->id]) }}" class="btn btn-primary mb-4">Neue Buchung</a>
+        <a href="{{ route('cashboxes.bookings.create', ['cashbox' => $cashbox->id]) }}" class="btn btn-primary mb-4"><i class="bi bi-plus-slash-minus pe-3"></i>Neue Buchung</a>
 
         <h2>Buchungen</h2>
         @if ($cashbox->bookings->isEmpty())
