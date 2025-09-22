@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\CashBox;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Encoders\JpegEncoder;
@@ -24,7 +25,11 @@ class BookingController extends Controller
      */
     public function create(CashBox $cashbox)
     {
-        return view('bookings.create', ['cashbox' => $cashbox]);
+        $categories = Category::orderBy('name')->get();
+        return view('bookings.create', [
+            'categories' => $categories,
+            'cashbox' => $cashbox,
+        ]);
     }
 
     /**
@@ -38,6 +43,7 @@ class BookingController extends Controller
             'amount' => 'required|numeric|min:0.01',
             'receipt_image' => 'nullable|file|mimes:jpeg,jpg,png,gif,bmp,svg|max:20480',
             'booking_date' => 'required|date',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $receipt_img_path = null;
@@ -78,6 +84,7 @@ class BookingController extends Controller
             'receipt_image' => $receipt_img_path,
             'booking_date' => $request->booking_date,
             'cash_box_id' => $cashbox->id,
+            'category_id' => $request->category_id,
         ]);
 
         $cashbox->balance += $amount;

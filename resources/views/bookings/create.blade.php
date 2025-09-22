@@ -48,10 +48,10 @@
             <div class="mb-3">
                 <label class="form-label">Art</label><br />
                 <div class="btn-group" role="group">
-                    <input type="radio" class="btn-check" name="amount_type" id="income" value="income" autocomplete="off" {{ (old('amount_type') == 'income' || old('amount_type') == null) ? 'checked' : '' }}>
+                    <input type="radio" class="btn-check" name="amount_type" id="income" value="income" autocomplete="off" {{ (old('amount_type') == 'income') ? 'checked' : '' }}>
                     <label class="btn btn-outline-success" for="income">Einnahme</label>
 
-                    <input type="radio" class="btn-check" name="amount_type" id="outgoing" value="outgoing" autocomplete="off" {{ old('amount_type') == 'outgoing' ? 'checked' : '' }}>
+                    <input type="radio" class="btn-check" name="amount_type" id="outgoing" value="outgoing" autocomplete="off" {{ (old('amount_type') == 'outgoing' || old('amount_type') == null) ? 'checked' : '' }}>
                     <label class="btn btn-outline-danger" for="outgoing">Ausgabe</label>
                 </div>
                 @error('amount_type')
@@ -67,6 +67,19 @@
                     <span class="input-group-text">€</span>
                 </div>
                 @error('amount')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="col col-12 col-sm-6 col-lg-4 col-xl-2">
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Kategorie</label>
+                <select class="form-select" name="category_id" id="category_id">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ (($category->name == 'Kinderkasse' && old('category_id') == null) || old('category_id') == $category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

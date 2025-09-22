@@ -15,6 +15,7 @@ class Booking extends Model
         'receipt_image',
         'booking_date',
         'cash_box_id',
+        'category_id',
     ];
 
     protected $casts = [
@@ -25,5 +26,10 @@ class Booking extends Model
     public function cashBox()
     {
         return $this->belongsTo(CashBox::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

@@ -19,6 +19,7 @@
                     <tr>
                         <th>Datum</th>
                         <th>Beschreibung</th>
+                        <th>Kategorie</th>
                         <th>Betrag</th>
                         <th>Beleg</th>
                     </tr>
@@ -28,6 +29,11 @@
                         <tr>
                             <td>{{ $booking->booking_date->format('d.m.Y') }}</td>
                             <td>{{ $booking->description }}</td>
+                            <td>
+                                @if ($booking->category)
+                                    <span class="badge text-bg-secondary">{{ $booking->category->name }}</span>
+                                @endif
+                            </td>
                             <td class="{{ $booking->amount >= 0 ? 'text-success' : 'text-danger' }}">
                                 {{ number_format($booking->amount, 2) }} €
                             </td>

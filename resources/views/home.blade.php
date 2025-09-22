@@ -22,7 +22,16 @@
                                 <strong>{{ $booking->booking_date->format('d.m.Y') }}</strong>
                             </div>
                             <div class="flex-grow-1 px-3">
-                                {{ $booking->description }}
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        {{ $booking->description }}
+                                    </div>
+                                    <div>
+                                        @if ($booking->category)
+                                            <span class="badge text-bg-secondary">{{ $booking->category->name }}</span>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="fw-bold text-end cb-flex-0-auto cb-w-90">
                                 @include('partials.numberCurrency', ['amount' => $booking->amount])
