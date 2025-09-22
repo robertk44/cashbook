@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\CashBox;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Encoders\JpegEncoder;
+use Intervention\Image\ImageManager;
 
 class BookingController extends Controller
 {
@@ -31,9 +34,38 @@ class BookingController extends Controller
     {
         $request->validate([
             'description' => 'required|string|max:1000',
+            'amount_type' => 'required|in:income,outgoing',
             'amount' => 'required|numeric|min:0.01',
+            'receipt_image' => 'nullable|file|mimes:jpeg,jpg,png,gif,bmp,svg|max:20480',
             'booking_date' => 'required|date',
         ]);
+
+        $receipt_img_path = null;
+        if ($request->hasFile('receipt_image')) {
+            $file = $request->file('receipt_image');
+            $extension = strtolower($file->getClientOriginalExtension());
+
+            if (in_array($extension, ['png', 'jpg', 'jpeg'])) {
+                $manager = ImageManager::imagick();
+                $image = $manager->read($file->getRealPath());
+                $width = $image->width();
+                $height = $image->height();
+                if ($width > $height && $width > 2000) {
+                    $image->scale(width: 2000);
+                } elseif ($height >= $width && $height > 2000) {
+                    $image->scale(height: 2000);
+                }
+
+                $jpegEncoder = new JpegEncoder(quality: 70);
+                $encoded = $image->encode($jpegEncoder);
+                $filename = uniqid() . '.jpg';
+                $path = 'receipts/' . $filename;
+                Storage::disk('public')->put($path, (string) $encoded);
+                $receipt_img_path = $path;
+            } else {
+                return back()->withErrors(['receipt_image' => 'The receipt image must be a PNG or JPG file.']);
+            }
+        }
 
         $amount = $request->amount;
         if ($request->amount_type === 'outgoing') {
@@ -43,6 +75,7 @@ class BookingController extends Controller
         Booking::create([
             'description' => $request->description,
             'amount' => $amount,
+            'receipt_image' => $receipt_img_path,
             'booking_date' => $request->booking_date,
             'cash_box_id' => $cashbox->id,
         ]);

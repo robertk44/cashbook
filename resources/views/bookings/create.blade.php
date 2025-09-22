@@ -3,7 +3,7 @@
 @section('title', 'Neue Buchung')
 
 @section('content')
-<form action="{{ route('cashboxes.bookings.store', ['cashbox' => $cashbox]) }}" method="POST">
+<form action="{{ route('cashboxes.bookings.store', ['cashbox' => $cashbox]) }}" method="POST" enctype="multipart/form-data">
     <div class="row mt-5">
         <div class="col col-12">
             <h1>{{ $cashbox->name }}<span class="text-tertiary"> | Neue Buchung</span></h1>
@@ -27,6 +27,17 @@
                 <label for="description" class="form-label">Kommentar</label>
                 <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required value="{{ old('description') }}">
                 @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-12 col-xl-6">
+            <div class="mb-3">
+                <label for="receipt_image" class="form-label">Belegbild</label>
+                <input type="file" class="form-control @error('receipt_image') is-invalid @enderror" id="receipt_image" name="receipt_image" value="{{ old('receipt_image') }}">
+                @error('receipt_image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

@@ -12,6 +12,7 @@ class Booking extends Model
     protected $fillable = [
         'description',
         'amount',
+        'receipt_image',
         'booking_date',
         'cash_box_id',
     ];
