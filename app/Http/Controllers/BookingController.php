@@ -74,8 +74,11 @@ class BookingController extends Controller
         }
 
         $amount = $request->amount;
+        $category_id = $request->category_id;
         if ($request->amount_type === 'outgoing') {
             $amount = -$request->amount;
+        } else {
+            $category_id = null;
         }
 
         Booking::create([
@@ -84,7 +87,7 @@ class BookingController extends Controller
             'receipt_image' => $receipt_img_path,
             'booking_date' => $request->booking_date,
             'cash_box_id' => $cashbox->id,
-            'category_id' => $request->category_id,
+            'category_id' => $category_id,
         ]);
 
         $cashbox->balance += $amount;
