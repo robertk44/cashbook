@@ -46,9 +46,13 @@ class CashBoxController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CashBox $cashBox)
+    public function show(CashBox $cashbox)
     {
-        //
+        return view('cashboxes.show', [
+            'cashbox' => $cashbox->load(['bookings' => function ($query) {
+                $query->orderBy('booking_date', 'desc')->orderBy('id', 'desc');
+            }]),
+        ]);
     }
 
     /**

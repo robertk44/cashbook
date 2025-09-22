@@ -8,7 +8,7 @@
         <div class="col col-12 col-lg-6">
             <div class="card shadow-sm mb-3">
                 <div class="card-header">
-                    <h5 class="card-title">{{ $cashbox->name }}</h5>
+                    <h5 class="card-title"><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ route('cashboxes.show', ['cashbox' => $cashbox]) }}">{{ $cashbox->name }}</a></h5>
                 </div>
                 <div class="card-body">
                     @if ($cashbox->description)
