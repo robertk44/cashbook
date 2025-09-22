@@ -5,7 +5,8 @@
 - [x] Kommentar pro Buchung linksbündig
 - [x] Zahlenformat deutsch
 - [x] Bild bei Buchung anhängen, beim Abspeichern komprimieren
-- [ ] Kategorisierung bei Buchung
+- [x] Kategorisierung bei Buchung
+- [ ] Kategorie bei "Einnahme" ausblenden
 - [ ] Zusammenfassung "Summe Ausgaben" nach Kategorie
 - [ ] Breakpoints 300, 600, 900, 1300
 - [ ] Buchung löschen
