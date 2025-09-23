@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-
+    @livewireStyles
 </head>
 
 <body>
@@ -85,6 +85,12 @@
     <main class="container">
         @yield('content')
     </main>
+    <script>
+        window.addEventListener('console-log', event => {
+            console.log(event.detail.message);
+        });
+    </script>
+    @livewireScripts
 
 </body>
 
