@@ -43,16 +43,18 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" x-data="{ amountType: 'outgoing' }">
         <div class="col col-12 col-sm-6 col-lg-4 col-xl-2">
             <div class="mb-3">
                 <label class="form-label">Art</label><br />
                 <div class="btn-group" role="group">
                     <input type="radio" class="btn-check" name="amount_type" id="income" value="income" autocomplete="off"
-                        {{ (old('amount_type') == 'income') ? 'checked' : '' }}>
+                        {{ (old('amount_type') == 'income') ? 'checked' : '' }}
+                        x-model="amountType">
                     <label class="btn btn-outline-success" for="income">Einnahme</label>
                     <input type="radio" class="btn-check" name="amount_type" id="outgoing" value="outgoing" autocomplete="off"
-                        {{ (old('amount_type') == 'outgoing' || old('amount_type') == null) ? 'checked' : '' }}>
+                        {{ (old('amount_type') == 'outgoing' || old('amount_type') == null) ? 'checked' : '' }}
+                        x-model="amountType">
                     <label class="btn btn-outline-danger" for="outgoing">Ausgabe</label>
                 </div>
                 @error('amount_type')
@@ -73,7 +75,7 @@
             </div>
         </div>
         <div class="col col-12 col-sm-6 col-lg-4 col-xl-2">
-            <div class="mb-3" id="booking_category_div">
+            <div class="mb-3" id="booking_category_div" x-show="amountType !== 'income'" x-transition.duration.150ms>
                 <label for="category_id" class="form-label">Kategorie</label>
                 <select class="form-select" name="category_id" id="category_id">
                     @foreach ($categories as $category)
