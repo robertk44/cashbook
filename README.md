@@ -1,4 +1,6 @@
-# geplante Features
+# Cashbook
+
+## geplante Features
 
 - [x] Radio Button Einnahme / Ausgabe
 - [x] farblich Einnahme / Ausgabe rot / grün kennzeichnen
