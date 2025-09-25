@@ -11,10 +11,12 @@
                     <h5 class="card-title"><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ route('cashboxes.show', ['cashbox' => $cashbox]) }}">{{ $cashbox->name }}</a></h5>
                 </div>
                 <div class="card-body">
-                    @if ($cashbox->description)
-                        <p class="card-text">{{ $cashbox->description }}</p>
-                        <hr>
-                    @endif
+                    <div style="min-height: 30px;">
+                        @if ($cashbox->description)
+                            <p class="card-text">{{ $cashbox->description }}</p>
+                        @endif
+                    </div>
+                    <hr>
                     @php $isEven = true; @endphp
                     @foreach ($cashbox->bookings->sortBy([['booking_date', 'asc'], ['id', 'asc']]) as $booking)
                         <div class="d-flex {{ $isEven ? 'bg-light' : 'bg-white' }}">
