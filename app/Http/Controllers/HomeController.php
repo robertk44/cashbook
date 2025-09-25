@@ -12,8 +12,15 @@ class HomeController extends Controller
     public function home()
     {
         $cashboxes = CashBox::with(['bookings' => function ($query) {
-            $query->orderBy('booking_date', 'desc')->orderBy('id', 'desc')->take(10);
+            $query->orderBy('booking_date', 'desc')->orderBy('id', 'desc')->take(20);
         }, 'bookings.category'])->orderBy('name')->get();
+        // inverse the bookings for each cashbox for frontend
+        $cashboxes->each(function ($cashbox) {
+            $cashbox->bookings = $cashbox->bookings->sortBy([
+                ['booking_date', 'asc'],
+                ['id', 'asc'],
+            ])->values(); // ->values() um die Indizes neu zu setzen
+        });
         return view('home', [
             'cashboxes' => $cashboxes,
         ]);
