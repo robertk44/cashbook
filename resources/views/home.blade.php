@@ -46,12 +46,31 @@
                         <p class="card-text text-end fw-bold">Kontostand: @include('partials.numberCurrency', ['amount' => $cashbox->balance])</p>
                     @endauth
                 </div>
-                <div class="card-footer text-end">
-                    @auth
-                        <a href="{{ route('cashboxes.bookings.create', ['cashbox' => $cashbox]) }}" class="btn btn-outline-primary"><i class="bi bi-plus-slash-minus pe-3"></i>Neue Buchung</a>
-                    @else
-                        <p class="card-text text-end fs-5 fw-bold">Kontostand: @include('partials.numberCurrency', ['amount' => $cashbox->balance])</p>
-                    @endauth
+                <div class="card-footer">
+                    <div class="text-end">
+                        @auth
+                            <a href="{{ route('cashboxes.bookings.create', ['cashbox' => $cashbox]) }}" class="btn btn-outline-primary"><i class="bi bi-plus-slash-minus pe-3"></i>Neue Buchung</a>
+                        @else
+                            <p class="card-text text-end fs-5 fw-bold">Kontostand: @include('partials.numberCurrency', ['amount' => $cashbox->balance])</p>
+                        @endauth
+                    </div>
+                    <h5 class="mt-2">Summe Ausgaben</h5>
+                    @php $isFirstCategory = true; @endphp
+                    @foreach ($categories as $category)
+                        <div class="d-flex justify-content-between {{ $isFirstCategory ? '' : 'border-top' }}">
+                            <div class="fw-bold">
+                                {{ $category['name'] }}
+                            </div>
+                            <div class="fw-bold">
+                                @if (isset($outgoings[$cashbox->id][$category['id']]))
+                                    @include('partials.numberCurrency', ['amount' => ($outgoings[$cashbox->id][$category['id']] * -1), 'colored' => false])
+                                @else
+                                    @include('partials.numberCurrency', ['amount' => 0, 'colored' => false])
+                                @endif
+                            </div>
+                        </div>
+                        @php $isFirstCategory = false; @endphp
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CashBox;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,28 @@ class HomeController extends Controller
         $cashboxes = CashBox::with(['bookings' => function ($query) {
             $query->orderBy('booking_date', 'desc')->orderBy('id', 'desc')->take(20);
         }, 'bookings.category'])->orderBy('name')->get();
+        $outgoings = CashBox::with(['bookings.category'])
+            ->get()
+            ->mapWithKeys(function ($cashBox) {
+                // Gruppiere alle Bookings dieser CashBox nach category_id
+                $groupedByCategory = $cashBox->bookings
+                    ->filter(fn($booking) => $booking->category_id !== null)
+                    ->groupBy('category_id')
+                    ->map(fn($bookings) => $bookings->sum('amount'));
+
+                return [
+                    $cashBox->id => $groupedByCategory->toArray()
+                ];
+            })
+            ->toArray();
+        $categories = Category::all()
+            ->keyBy('id')
+            ->map(fn($category) => $category->toArray())
+            ->toArray();
         return view('home', [
             'cashboxes' => $cashboxes,
+            'categories' => $categories,
+            'outgoings' => $outgoings,
         ]);
     }
 
