@@ -22,7 +22,7 @@
     <header class="">
         <nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand fs-1" href="{{ url('/') }}">
                     📖 Kassenbuch
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
