@@ -9,7 +9,8 @@
 - [x] Bild bei Buchung anhängen, beim Abspeichern komprimieren
 - [x] Kategorisierung bei Buchung
 - [x] Kategorie bei "Einnahme" ausblenden
-- [ ] Zusammenfassung "Summe Ausgaben" nach Kategorie
+- [x] Zusammenfassung "Summe Ausgaben" nach Kategorie
+- [ ] Schuljahr einführen (Summe der Ausgaben)
 - [ ] Breakpoints 300, 600, 900, 1300
 - [ ] Buchung löschen
 - [ ] Kasse löschen
