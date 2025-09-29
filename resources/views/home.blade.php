@@ -18,7 +18,7 @@
                     </div>
                     <hr>
                     @php $isEven = true; @endphp
-                    @foreach ($cashbox->bookings->sortBy([['booking_date', 'asc'], ['id', 'asc']]) as $booking)
+                    @foreach ($cashbox->bookings as $booking)
                         <div class="d-flex {{ $isEven ? 'bg-light' : 'bg-white' }}">
                             <div class="cb-flex-0-auto cb-w-90">
                                 <strong>{{ $booking->booking_date->format('d.m.Y') }}</strong>
