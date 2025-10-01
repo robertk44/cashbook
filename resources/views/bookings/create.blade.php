@@ -66,7 +66,7 @@
             <div class="mb-3">
                 <label for="amount" class="form-label">Betrag</label>
                 <div class="input-group">
-                    <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount" step="0.01" value="{{ old('amount', 0) }}">
+                    <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount" step="0.01" value="{{ old('amount') }}" placeholder="0.00" required>
                     <span class="input-group-text">€</span>
                 </div>
                 @error('amount')
