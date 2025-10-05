@@ -20,7 +20,7 @@
                     @php $isEven = true; @endphp
                     @foreach ($cashbox->bookings as $booking)
                         <div class="d-flex {{ $isEven ? 'bg-light' : 'bg-white' }} card-cashbox__booking">
-                            <div class="cb-flex-0-auto card-cashbox__booking-date">
+                            <div class="card-cashbox__booking-date">
                                 <strong>{{ $booking->booking_date->format('d.m.Y') }}</strong>
                             </div>
                             <div class="flex-grow-1 card-cashbox__booking-details">
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="fw-bold text-end cb-flex-0-auto card-cashbox__booking-amount">
+                            <div class="fw-bold card-cashbox__booking-amount">
                                 @include('partials.numberCurrency', ['amount' => $booking->amount])
                             </div>
                         </div>
