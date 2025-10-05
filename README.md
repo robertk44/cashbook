@@ -11,6 +11,6 @@
 - [x] Kategorie bei "Einnahme" ausblenden
 - [x] Zusammenfassung "Summe Ausgaben" nach Kategorie
 - [ ] Schuljahr einführen (Summe der Ausgaben)
-- [ ] Breakpoints 300, 600, 900, 1300
+- [x] Breakpoints 300, 600, 900, 1300
 - [ ] Buchung löschen
 - [ ] Kasse löschen
