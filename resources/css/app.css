@@ -16,5 +16,42 @@
 }
 
 .cb-w-90 {
-    width: 90px;
+    width: 110px;
+}
+
+.card-cashbox {
+    container: card-cashbox / inline-size;
+    /* width: 100%; */
+}
+
+.card-cashbox__booking {
+    flex-direction: column;
+}
+
+.card-cashbox__booking-date {
+    width: 100%;
+}
+
+.card-cashbox__booking-details {
+    padding: 0;
+}
+
+.card-cashbox__booking-amount {
+    text-align: right;
+}
+
+@container card-cashbox (width > 480px) {
+    .card-cashbox__booking {
+        flex-direction: row;
+    }
+    .card-cashbox__booking-date {
+        width: 90px;
+    }
+    .card-cashbox__booking-details {
+        padding: 0 1rem;
+    }
+    .card-cashbox__booking-amount {
+        text-align: right;
+        width: 90px;
+    }
 }

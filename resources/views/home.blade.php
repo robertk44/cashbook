@@ -6,7 +6,7 @@
 <div class="row mt-5">
     @foreach ($cashboxes as $cashbox)
         <div class="col col-12 col-lg-6">
-            <div class="card shadow-sm mb-3">
+            <div class="card shadow-sm mb-3 card-cashbox">
                 <div class="card-header">
                     <h5 class="card-title"><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3" href="{{ route('cashboxes.show', ['cashbox' => $cashbox]) }}">{{ $cashbox->name }}</a></h5>
                 </div>
@@ -19,11 +19,11 @@
                     <hr>
                     @php $isEven = true; @endphp
                     @foreach ($cashbox->bookings as $booking)
-                        <div class="d-flex {{ $isEven ? 'bg-light' : 'bg-white' }}">
-                            <div class="cb-flex-0-auto cb-w-90">
+                        <div class="d-flex {{ $isEven ? 'bg-light' : 'bg-white' }} card-cashbox__booking">
+                            <div class="cb-flex-0-auto card-cashbox__booking-date">
                                 <strong>{{ $booking->booking_date->format('d.m.Y') }}</strong>
                             </div>
-                            <div class="flex-grow-1 px-3">
+                            <div class="flex-grow-1 card-cashbox__booking-details">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         {{ $booking->description }}
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="fw-bold text-end cb-flex-0-auto cb-w-90">
+                            <div class="fw-bold text-end cb-flex-0-auto card-cashbox__booking-amount">
                                 @include('partials.numberCurrency', ['amount' => $booking->amount])
                             </div>
                         </div>
