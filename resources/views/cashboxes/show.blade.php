@@ -27,9 +27,7 @@
                         <div class="cb-table__col cb-table__col--date cb-table__col--link">
                             <a href="{{ route('bookings.show', ['booking' => $booking]) }}" class="cb-table__link">{{ $booking->booking_date->format('d.m.Y') }}</a>
                         </div>
-                        <div class="cb-table__col cb-table__col--desc cb-table__col--link">
-                            <a href="{{ route('bookings.show', ['booking' => $booking]) }}" class="cb-table__link">{{ $booking->description }}</a>
-                        </div>
+                        <div class="cb-table__col cb-table__col--desc">{{ $booking->description }}</div>
                         <div class="cb-table__col cb-table__col--cat">
                             @if ($booking->category)
                                 <span class="badge text-bg-secondary">{{ $booking->category->name }}</span>
@@ -40,7 +38,7 @@
                         </div>
                         <div class="cb-table__col cb-table__col--receipt">
                             @if ($booking->receipt_image)
-                                <a href="{{ asset('storage/' . $booking->receipt_image) }}" target="_blank">Ansehen</a>
+                                <a href="{{ asset('storage/' . $booking->receipt_image) }}" target="_blank">Beleg 🎫</a>
                             @else
                                 -
                             @endif

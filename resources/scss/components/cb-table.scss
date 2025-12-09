@@ -41,7 +41,7 @@
 
     &__col {
         padding: .375rem .75rem;
-        height: 2.25rem;
+        min-height: 2.25rem;
 
         &--link {
             padding: 0;
@@ -49,7 +49,7 @@
 
         &--date {
             order: 1;
-            flex: 0 0 100%;
+            flex: 0 0 50%;
             @include media-breakpoint-up(lg) {
                 order: 0;
                 flex: 0 0 8rem;
@@ -57,9 +57,9 @@
         }
 
         &--cat {
-            flex: 0 0 10rem;
+            flex: 0 0 8rem;
             text-align: right;
-            order: 3;
+            order: 4;
             @include media-breakpoint-up(lg) {
                 text-align: left;
                 order: 0;
@@ -67,8 +67,9 @@
         }
 
         &--receipt {
+            text-align: right;
             flex: 0 0 50%;
-            order: 4;
+            order: 2;
             @include media-breakpoint-up(lg) {
                 flex: 0 0 6rem;
                 order: 0;
@@ -76,10 +77,10 @@
         }
 
         &--desc {
-            flex: 0 0 calc(100% - 10rem);
-            order: 2;
+            flex: 0 0 calc(100% - 8rem);
+            order: 3;
             @include media-breakpoint-up(lg) {
-                flex: 0 0 calc(100% - 32rem);
+                flex: 0 0 calc(100% - 30rem);
                 order: 0;
             }
         }
@@ -87,7 +88,7 @@
         &--amount {
             text-align: right;
             order: 5;
-            flex: 0 0 50%;
+            flex: 0 0 100%;
             @include media-breakpoint-up(lg) {
                 order: 0;
                 flex: 0 0 8rem;
