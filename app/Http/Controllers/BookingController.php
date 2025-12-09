@@ -101,7 +101,9 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        return view('bookings.show', [
+            'booking' => $booking,
+        ]);
     }
 
     /**
@@ -125,6 +127,16 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        $cashbox = $booking->cashBox;
+        $cashbox->balance -= $booking->amount;
+        $cashbox->save();
+
+        if ($booking->receipt_image) {
+            Storage::disk('public')->delete($booking->receipt_image);
+        }
+
+        $booking->delete();
+
+        return redirect()->route('home');
     }
 }

@@ -1,0 +1,104 @@
+.cb-table {
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+
+        &--header {
+            font-weight: bold;
+            display: none;
+
+            @include media-breakpoint-up(lg) {
+                display: flex;
+            }
+        }
+
+        &--item {
+            border-top: 1px solid #ccc;
+        }
+
+        &--odd {
+            background-color: #f4f4f4;
+
+            .cb-table__col--date,
+            .cb-table__col--amount {
+                @include media-breakpoint-up(lg) {
+                    background-color: #ececec;
+                }
+            }
+        }
+
+        &--even {
+            background-color: #fafafa;
+
+            .cb-table__col--date,
+            .cb-table__col--amount {
+                @include media-breakpoint-up(lg) {
+                    background-color: #f4f4f4;
+                }
+            }
+        }
+    }
+
+    &__col {
+        padding: .375rem .75rem;
+        height: 2.25rem;
+
+        &--link {
+            padding: 0;
+        }
+
+        &--date {
+            order: 1;
+            flex: 0 0 100%;
+            @include media-breakpoint-up(lg) {
+                order: 0;
+                flex: 0 0 8rem;
+            }
+        }
+
+        &--cat {
+            flex: 0 0 10rem;
+            text-align: right;
+            order: 3;
+            @include media-breakpoint-up(lg) {
+                text-align: left;
+                order: 0;
+            }
+        }
+
+        &--receipt {
+            flex: 0 0 50%;
+            order: 4;
+            @include media-breakpoint-up(lg) {
+                flex: 0 0 6rem;
+                order: 0;
+            }
+        }
+
+        &--desc {
+            flex: 0 0 calc(100% - 10rem);
+            order: 2;
+            @include media-breakpoint-up(lg) {
+                flex: 0 0 calc(100% - 32rem);
+                order: 0;
+            }
+        }
+
+        &--amount {
+            text-align: right;
+            order: 5;
+            flex: 0 0 50%;
+            @include media-breakpoint-up(lg) {
+                order: 0;
+                flex: 0 0 8rem;
+            }
+        }
+    }
+
+    &__link {
+        padding: .375rem .75rem;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}

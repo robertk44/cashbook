@@ -17,4 +17,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('cashboxes', CashBoxController::class);
     Route::resource('cashboxes.bookings', BookingController::class)->shallow();
     Route::resource('categories', CategoryController::class)->except(['show', 'edit', 'update']);
+    Route::resource('bookings', BookingController::class)->only(['show', 'destroy']);
 });
